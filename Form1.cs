@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Drawing.Text;
+using coding.data;
 
 namespace coding
 {
@@ -31,6 +32,24 @@ namespace coding
             textBox1.Size = new System.Drawing.Size(200, 35);
             textBox2.AutoSize = false;
             textBox2.Size = new System.Drawing.Size(200, 35);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string login = textBox1.Text;
+            string password = textBox2.Text;
+
+            using (DataContext db = new DataContext())
+            {
+                var b = db.Users.Any(u => u.Login == login && u.Password == password);
+                var c = b ? MessageBox.Show("Вы успешно вошли!") : MessageBox.Show("Некорректные данные!");
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Form2 f2 = new Form2();
+            f2.Show();
         }
     }
 }
