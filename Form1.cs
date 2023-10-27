@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Drawing.Text;
 
 namespace coding
 {
@@ -15,6 +16,21 @@ namespace coding
         public Form1()
         {
             InitializeComponent();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            PrivateFontCollection pfc = new PrivateFontCollection();
+            pfc.AddFontFile(@"C:\Users\sqwish\source\repos\coding\assets\font\Comfortaa-Regular.ttf");
+            foreach (Control c in this.Controls)
+            {
+                c.Font = new Font(pfc.Families[0], 15, FontStyle.Regular);
+            }
+
+            textBox1.AutoSize = false;
+            textBox1.Size = new System.Drawing.Size(200, 35);
+            textBox2.AutoSize = false;
+            textBox2.Size = new System.Drawing.Size(200, 35);
         }
     }
 }
